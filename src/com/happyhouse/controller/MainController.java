@@ -221,6 +221,7 @@ public class MainController extends HttpServlet {
 	
 	private void logout(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		HttpSession session = request.getSession();
+		session.removeAttribute("houseList");
 		session.removeAttribute("userinfo");
 		session.invalidate();
 		response.sendRedirect(request.getContextPath());

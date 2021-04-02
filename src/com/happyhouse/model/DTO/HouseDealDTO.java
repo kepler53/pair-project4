@@ -34,11 +34,11 @@ public class HouseDealDTO {
 		this.dealAmount = dealAmount;
 	}
 
-	public float getBuildYear() {
+	public int getBuildYear() {
 		return buildYear;
 	}
 
-	public void setBuildYear(float buildYear) {
+	public void setBuildYear(int buildYear) {
 		this.buildYear = buildYear;
 	}
 
@@ -46,13 +46,13 @@ public class HouseDealDTO {
 	private String aptName;
 	private String code;
 	private String dealAmount;
-	private float buildYear;
+	private int buildYear;
 	
 	public HouseDealDTO() {
 		
 	}
 	
-	public HouseDealDTO(String dong, String aptName, String code, String dealAmount, float buildYear) {
+	public HouseDealDTO(String dong, String aptName, String code, String dealAmount, int buildYear) {
 		super();
 		this.dong = dong;
 		this.aptName = aptName;
