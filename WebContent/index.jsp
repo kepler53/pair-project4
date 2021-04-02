@@ -1,34 +1,33 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<c:set var="root" value="${pageContext.request.contextPath}"/>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="root" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
-	<head>
-	<meta charset="UTF-8">
-	<link rel="stylesheet" href="style.css">
-	<link
-      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Noto+Serif+KR:wght@400;500;600&display=swap"
-      rel="stylesheet"
-    />
-	<title>해피 부동산</title>
-	</head>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="style.css">
+<link
+	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Noto+Serif+KR:wght@400;500;600&display=swap"
+	rel="stylesheet" />
+<title>해피 부동산</title>
+</head>
 <body>
 	<header>
 		<div class="header__main">
 			<i class="fas fa-home"></i> <a href="index.jsp">Happy House</a>
 		</div>
 		<ul class="header__menu">
-		<c:if test="${userinfo eq null}">
-			<li><button class="signin-btn" onclick="javascript:login();">로그인</button></li>
-			<li><button class="signup-btn" onclick="javascript:join();">회원가입</button></li>
-		</c:if>		
-		<c:if test="${userinfo ne null}">
-			<li><button class="board-btn" onclick="">자유게시판</button></li>
-			<li><button class="bulletin-btn" onclick="javascript:write();">글쓰기</button></li>
-			<li><button class="mypage-btn" onclick="javascript:mypage();">마이페이지</button></li>
-			<li><button class="logout-btn" onclick="javascript:logout();">로그아웃</button></li>
-		</c:if>	
+			<c:if test="${userinfo eq null}">
+				<li><button class="signin-btn" onclick="javascript:login();">로그인</button></li>
+				<li><button class="signup-btn" onclick="javascript:join();">회원가입</button></li>
+			</c:if>
+			<c:if test="${userinfo ne null}">
+				<li><button class="board-btn" onclick="">자유게시판</button></li>
+				<li><button class="bulletin-btn" onclick="javascript:write();">글쓰기</button></li>
+				<li><button class="mypage-btn" onclick="javascript:mypage();">마이페이지</button></li>
+				<li><button class="logout-btn" onclick="javascript:logout();">로그아웃</button></li>
+			</c:if>
 		</ul>
 		<a href="#" class="header__toggleBtn"><i class="fas fa-bars"></i></a>
 	</header>
@@ -58,7 +57,12 @@
 		</form>
 
 		<div class="house">
-			<%@ include file="/house/house.jsp"%>
+			<c:if test="${empty userinfo}">
+				<span>로그인하셔야 볼 수 있습니다!</span>
+			</c:if>
+			<c:if test="${not empty userinfo}">
+				<%@ include file="/house/house.jsp"%>
+			</c:if>
 		</div>
 	</section>
 	<footer>

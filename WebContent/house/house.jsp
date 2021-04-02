@@ -1,9 +1,13 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <style type="text/css">
 .house {
 	display: flex;
+	flex-direction:column;
 	justify-content: center;
 	align-items: center;
 }
+
+.dong{ margin-top: 30px;}
 
 .container {
 	display: flex;
@@ -18,25 +22,29 @@
 }
 
 .item {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
 	width: 200px;
 	height: 200px;
-	background-color: blue;
+	border: 1px solid darkgrey;
 	margin: 10px;
 }
 </style>
-<c:if test="${empty houseList}">
-	<span class="msg">매물이 없습니다.</span>
-</c:if>
 
+<c:if test="${empty houseList}">
+	<span class="msg">there is no item</span>
+</c:if>
 <c:if test="${not empty houseList}">
 	<ul class="container">
+
 		<c:forEach items="${houseList}" var="b">
 			<li class="item">
 				<div>${b.dong}</div>
-				<div>${b.aptName}</div>
-				<div>${b.code}</div>
-				<div>${b.dealAmount}</div>
-				<div>${b.buildYear}</div>
+				<div><strong>${b.aptName}</strong></div>
+				<div>${b.dealAmount},000원</div>
+				<div>${b.buildYear}년 준공</div>
 			</li>
 		</c:forEach>
 	</ul>
