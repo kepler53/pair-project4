@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="root" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -147,6 +149,13 @@
 	    }
 	  });
 	});
+	document.querySelector(".signin-btn").addEventListener('click', () => {
+		document.location.href="${root}/user/login.jsp";
+	})
+	document.querySelector(".signup-btn").addEventListener('click', () => {
+		document.location.href="${root}/user/join.jsp";
+	})
+	
 	</script>
 </body>
 </html>
