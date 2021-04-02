@@ -78,23 +78,18 @@
 	<div class="modal signin">
 		<div class="modal__content animate">
 			<div class="modal__content__title">로그인</div>
-			<form action="submit" class="signin-form">
+			<form action="${root}/main" class="signin-form">
 				<input type="hidden" name="act" value="login">
 				<input class="form__row id" type="text" placeholder="아이디"
 					name="userid" required /> <input
 					class="form__row pwd" type="password" placeholder="비밀번호"
 					name="userpwd" required />
-				<button class="signin-form__btn" type="submit"
-					onclick="javascript:login();">로그인</button>
+				<button class="signin-form__btn" type="submit">로그인</button>
 			</form>
 			<span class="psw">계정이 없으신가요? <a href="join.jsp" class="join">회원가입</a></span>
 		</div>
 	</div>
 	<script>
-    function login() {
-    	document.querySelector(".signin-form").action = "${root}/main";
-    	document.querySelector(".signin-form").submit(); 	
-    }
     </script>
 </body>
 </html>
