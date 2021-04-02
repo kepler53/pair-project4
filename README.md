@@ -28,7 +28,7 @@
 
 ## Class Diagram!
 
-![diagram](https://lab.ssafy.com/95jjangjun/ssafy-project-03/blob/master/happyHouse.png)
+![diagram](https://lab.ssafy.com/95jjangjun/ssafy-project-03/raw/master/happyHouse.png)
 
 ## Demo
 
