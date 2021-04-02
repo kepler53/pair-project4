@@ -32,4 +32,4 @@
 
 ## Demo
 
-![demo]https://lab.ssafy.com/95jjangjun/ssafy-project-03/blob/master/demo.gif)
+![demo](https://lab.ssafy.com/95jjangjun/ssafy-project-03/blob/master/demo.gif)
