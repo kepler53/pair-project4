@@ -19,10 +19,16 @@
 			<i class="fas fa-home"></i> <a href="index.jsp">Happy House</a>
 		</div>
 		<ul class="header__menu">
-			<li><button class="signin-btn">로그인</button></li>
-			<li><button class="signup-btn">회원가입</button></li>
-			<li><button class="board-btn hide">자유게시판</button></li>
-			<li><button class="bulletin-btn hide">글쓰기</button></li>
+		<c:if test="${userinfo eq null}">
+			<li><button class="signin-btn" onclick="javascript:login();">로그인</button></li>
+			<li><button class="signup-btn" onclick="javascript:join();">회원가입</button></li>
+		</c:if>		
+		<c:if test="${userinfo ne null}">
+			<li><button class="board-btn" onclick="">자유게시판</button></li>
+			<li><button class="bulletin-btn" onclick="javascript:write();">글쓰기</button></li>
+			<li><button class="mypage-btn" onclick="javascript:mypage();">마이페이지</button></li>
+			<li><button class="logout-btn" onclick="javascript:logout();">로그아웃</button></li>
+		</c:if>	
 		</ul>
 		<a href="#" class="header__toggleBtn"><i class="fas fa-bars"></i></a>
 	</header>
@@ -149,13 +155,19 @@
 	    }
 	  });
 	});
-	document.querySelector(".signin-btn").addEventListener('click', () => {
-		document.location.href="${root}/user/login.jsp";
-	})
-	document.querySelector(".signup-btn").addEventListener('click', () => {
-		document.location.href="${root}/user/join.jsp";
-	})
 	
+	function login(){
+		document.location.href="${root}/user/login.jsp";
+	}
+	function join(){
+		document.location.href="${root}/user/join.jsp";
+	}
+	function logout(){
+		document.location.href="${root}/main?act=logout"
+	}
+	function mypage(){
+		document.location.href="${root}/user/mypage.jsp";
+	}
 	</script>
 </body>
 </html>
