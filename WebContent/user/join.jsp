@@ -86,15 +86,15 @@ input.form__row {
 			<div class="modal__content__title">필수 정보를 입력해주세요.</div>
 			<form class="signup-form" action="submit">
 				<input type="hidden" name="act" value="join">
-				<input class="form__row id" type="text" placeholder="아이디*(4~20자)" />
-				<input class="form__row pwd" type="password"
+				<input class="form__row id" type="text" placeholder="아이디*(4~20자)" name="userid"/>
+				<input class="form__row pwd" type="password" name="userpwd"
 					placeholder="비밀번호* (영문+숫자, 8~20자)" required /> <input
 					class="form__row pwd" type="password" placeholder="비밀번호 재확인*"
 					required />
 				<div class="signup-form__email">
 					<input class="form__row email front" type="text"
-						placeholder="이메일 앞자리*" required /> <span class="email-center">@</span>
-					<input class="form__row email end" type="text"
+						placeholder="이메일 앞자리*" name="useremail-front" required /> <span class="email-center">@</span>
+					<input class="form__row email end" type="text" name="useremail-end"
 						placeholder="이메일 뒷자리*" disabled />
 				</div>
 				<select class="form__row email-select" name="email">
@@ -118,8 +118,12 @@ input.form__row {
             document.querySelector(".email.end").value = "";
             document.querySelector(".email.end").disabled = false;
             return;
+          } else {
+        	document.querySelector(".email.end").disabled = true;
+        	document.querySelector(".email.end").value = selectedEmail;
           }
-          document.querySelector(".email.end").value = selectedEmail;
+          
+          
         });
       function join() {
       	document.querySelector(".signup-form").action = "${root}/main";
