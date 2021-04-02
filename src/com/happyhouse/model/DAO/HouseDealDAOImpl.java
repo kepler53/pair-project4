@@ -37,7 +37,7 @@ public class HouseDealDAOImpl implements HouseDealDAO {
 				houseDealDTO.setAptName(rs.getString("AptName"));
 				houseDealDTO.setCode(rs.getString("code"));
 				houseDealDTO.setDealAmount(rs.getString("dealAmount"));
-				houseDealDTO.setBuildYear(rs.getFloat("buildYear"));
+				houseDealDTO.setBuildYear(rs.getInt("buildYear"));
 			
 				list.add(houseDealDTO);
 			}
