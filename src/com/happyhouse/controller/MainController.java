@@ -53,6 +53,8 @@ public class MainController extends HttpServlet {
 			response.sendRedirect(root + "/user/join.jsp");
 		}else if("join".equals(act)) { //회원가입 내용
 			join(request,response);
+		}else if("logout".equals(act)) {
+			logout(request,response);
 		}
 	}
 
@@ -63,6 +65,9 @@ public class MainController extends HttpServlet {
 		String userid = request.getParameter("userid");
 		String userpwd = request.getParameter("userpwd");
 		
+		System.out.println(userid);
+		System.out.println(userpwd);
+		
 		try {
 			MemberDTO memberDto = memberService.login(userid, userpwd);
 			if(memberDto != null) {
@@ -70,6 +75,7 @@ public class MainController extends HttpServlet {
 				HttpSession session = request.getSession();
 				session.setAttribute("userinfo", memberDto);
 				//path 설정 => result page로 갈건지 아니면 그냥 index.jsp로 갈것인지....
+				path = "/user/join.jsp";
 			} else {
 				request.setAttribute("msg", "아이디 또는 비밀번호 확인 후 로그인해 주세요.");
 			}
@@ -105,6 +111,11 @@ public class MainController extends HttpServlet {
 		request.getRequestDispatcher(path).forward(request, response);
 	}
 	
+	private void logout(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		HttpSession session = request.getSession();
+		session.removeAttribute("userinfo");
+		session.invalidate();
+	}
 	
 	
 }
