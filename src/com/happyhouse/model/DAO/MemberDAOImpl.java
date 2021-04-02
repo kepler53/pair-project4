@@ -101,7 +101,7 @@ public class MemberDAOImpl implements MemberDAO {
 			String sql = "UPDATE MEMBER_TB SET USERPWD=?,USEREMAIL =? WHERE USERID = ?";
 	
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, memberDTO.getUserpwd());
+			pstmt.setString(1, memberDTO.getUserpwd()); //setString이 작은 따옴표를 물고 들어감
 			pstmt.setString(2, memberDTO.getUseremail());
 			pstmt.setString(3, memberDTO.getUserid());
 			result = pstmt.executeUpdate();

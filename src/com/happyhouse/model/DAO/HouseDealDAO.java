@@ -1,0 +1,14 @@
+package com.happyhouse.model.DAO;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.happyhouse.model.DTO.HouseDealDTO;
+
+public interface HouseDealDAO {
+	
+	//동 코드에 맞는 정보 검색
+	public List<HouseDealDTO> search(String dongcode) throws SQLException;
+
+}
