@@ -33,7 +33,7 @@
 		<a href="#" class="header__toggleBtn"><i class="fas fa-bars"></i></a>
 	</header>
 	<section class="main-content">
-		<section class="search">
+		<form class="search" method="get">
 			<select class="select city">
 				<option value="all">도/광역시</option>
 				<option value="서울특별시">서울특별시</option>
@@ -55,11 +55,10 @@
 			</select> <select class="select si">
 				<option value="all">시/구/군</option>
 			</select>
-		</section>
+		</form>
 
 		<div class="map__and__info">
-			<div id="map"></div>
-			<ul class="map-info-list"></ul>
+			<%@ include file="/house/house.jsp"%>
 		</div>
 	</section>
 	<footer>
