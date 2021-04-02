@@ -15,15 +15,26 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public MemberDTO login(String userid, String userpwd) throws SQLException {
+	public MemberDTO login(String userid, String userpwd) throws Exception {
 		// TODO Auto-generated method stub
 		return memberDAO.login(userid, userpwd);
 	}
 
 	@Override
-	public int insert(MemberDTO memberDTO) throws SQLException {
+	public int insert(MemberDTO memberDTO) throws Exception {
 		// TODO Auto-generated method stub
 		return memberDAO.insert(memberDTO);
 	}
 
+	@Override
+	public int delete(String id) throws Exception {		
+		return memberDAO.delete(id);
+	}
+
+	@Override
+	public int update(MemberDTO memberDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return memberDAO.update(memberDTO);
+	}
+	
 }

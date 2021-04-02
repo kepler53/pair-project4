@@ -45,6 +45,8 @@ public class MainController extends HttpServlet {
 		
 		String act = request.getParameter("act");
 		
+		System.out.println(act);
+		
 		if("mvlogin".equals(act)) { //로그인 페이지 이동
 			response.sendRedirect(root + "/user/login.jsp");
 		}else if ("login".equals(act)) { //로그인 페이지에서 로그인 버튼을 눌렀을 때
@@ -55,21 +57,86 @@ public class MainController extends HttpServlet {
 			join(request,response);
 		}else if("logout".equals(act)) {
 			logout(request,response);
+		}else if("delete".equals(act)) {
+			delete(request,response);
+		}else if("update".equals(act)) {
+			update(request,response);
 		}
 	}
 
 	
+
+	private void update(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String path = "";
+		MemberDTO userinfo =  (MemberDTO) request.getSession().getAttribute("userinfo");
+		String userid = userinfo.getUserid();
+		String userpwd = request.getParameter("userpwd");
+		String email_front = request.getParameter("useremail-front");
+		String email_end = request.getParameter("email");
+		String email = email_front + "@" + email_end;
+		
+		System.out.println(userid + " " + userpwd + " " + email);
+		
+		MemberDTO memberDTO = new MemberDTO(userid, userpwd, email);
+		
+		try {
+			int result = memberService.update(memberDTO);
+			if(result==1) {
+				//성공했을 때
+				path = "/index.jsp";
+			}else {
+				//실패했을 때
+			}
+			
+		}catch (Exception e) {
+			System.out.println("회원 업데이트 실패했어");
+			e.printStackTrace();
+		}
+		
+		request.getRequestDispatcher(path).forward(request, response);
+		
+	}
+
+	private void delete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String path = "";
+		MemberDTO userinfo =  (MemberDTO) request.getSession().getAttribute("userinfo");
+		String userid = userinfo.getUserid();
+		
+//		System.out.println("여긴왔니");
+		
+		try {
+			int result = memberService.delete(userid);
+//			System.out.println(result);
+			if(result==1) {
+//				System.out.println(userid);
+				HttpSession session = request.getSession();
+				session.removeAttribute("userinfo");
+				session.invalidate();
+				response.sendRedirect(request.getContextPath());
+				//성공했을 때
+				path = "/index.jsp";
+				
+				
+			}else {
+				//실패했을 때
+			}	
+		}catch (Exception e) {
+			System.out.println("회원 삭제 실패했어");
+			e.printStackTrace();
+		}
+		
+		//request.getRequestDispatcher(path).forward(request, response);
+		
+	}
 
 	private void login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String path = "/index.jsp"; 
 		String userid = request.getParameter("userid");
 		String userpwd = request.getParameter("userpwd");
 		
-		System.out.println(userid);
-		System.out.println(userpwd);
-		
 		try {
 			MemberDTO memberDto = memberService.login(userid, userpwd);
+					
 			if(memberDto != null) {
 			//session 설정, id하고 비밀번호 들고 다님
 				HttpSession session = request.getSession();
@@ -96,7 +163,7 @@ public class MainController extends HttpServlet {
 		String email_end = request.getParameter("email");
 		String email = email_front + "@" + email_end;
 		
-		System.out.println(email);
+//		System.out.println(email);
 
 		MemberDTO memberDTO = new MemberDTO(userid,userpwd, email);
 		

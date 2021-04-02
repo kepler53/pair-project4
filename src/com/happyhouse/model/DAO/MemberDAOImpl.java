@@ -66,5 +66,56 @@ public class MemberDAOImpl implements MemberDAO {
 		}
 		return result;
 	}
+
+	@Override
+	public int delete(String id) throws SQLException {
+		int result = 0;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			System.out.println("id는" +id);
+			String sql = "DELETE FROM MEMBER_TB WHERE USERID = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("member dao delete error");
+		} finally {
+			DBUtil.close(pstmt, conn);
+		}
+		return result;
+	}
+
+	@Override
+	public int update(MemberDTO memberDTO) throws SQLException {
+		
+		int result = 0;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			String sql = "UPDATE MEMBER_TB SET USERPWD=?,USEREMAIL =? WHERE USERID = ?";
+	
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, memberDTO.getUserpwd());
+			pstmt.setString(2, memberDTO.getUseremail());
+			pstmt.setString(3, memberDTO.getUserid());
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("member dao update error");
+		} finally {
+			DBUtil.close(pstmt, conn);
+		}
+		return result;
+	}
+
+	
+
+	
 	
 }
