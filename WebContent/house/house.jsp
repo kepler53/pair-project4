@@ -1,5 +1,3 @@
-<%@ page import="com.happyhouse.model.DTO.*, java.util.*;"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <style type="text/css">
 .house {
 	display: flex;
@@ -35,7 +33,7 @@
 		<c:forEach items="${houseList}" var="b">
 			<li class="item">
 				<div>${b.dong}</div>
-				<div>${b.AptName}</div>
+				<div>${b.aptName}</div>
 				<div>${b.code}</div>
 				<div>${b.dealAmount}</div>
 				<div>${b.buildYear}</div>
