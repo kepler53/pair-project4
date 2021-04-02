@@ -90,9 +90,13 @@ public class MainController extends HttpServlet {
 	
 	private void join(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String path = "";
-		String userid = request.getParameter("");
-		String userpwd = request.getParameter("");
-		String email = request.getParameter("");
+		String userid = request.getParameter("userid");
+		String userpwd = request.getParameter("userpwd");
+		String email_front = request.getParameter("useremail-front");
+		String email_end = request.getParameter("email");
+		String email = email_front + "@" + email_end;
+		
+		System.out.println(email);
 
 		MemberDTO memberDTO = new MemberDTO(userid,userpwd, email);
 		
@@ -100,12 +104,14 @@ public class MainController extends HttpServlet {
 			int result = memberService.insert(memberDTO);
 			if(result==1) {
 				//성공했을 때
+				path = "/index.jsp";
 			}else {
 				//실패했을 때
 			}
 			
 		}catch (Exception e) {
-			
+			System.out.println("회원 가입 실패했어");
+			e.printStackTrace();
 		}
 		
 		request.getRequestDispatcher(path).forward(request, response);
