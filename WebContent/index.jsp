@@ -57,7 +57,7 @@
 			</select>
 		</form>
 
-		<div class="map__and__info">
+		<div class="house">
 			<%@ include file="/house/house.jsp"%>
 		</div>
 	</section>
@@ -121,38 +121,9 @@
 
 	selectSi.addEventListener("change", (e) => {
 	  const selectedSi = e.target.options[e.target.selectedIndex];
-
-	  const item = [];
-	  const response = api.fetchJSON("./src/data/houseData.json");
-	  response.then((res) => {
-	    const data = res[0];
-	    let locs = [];
-	    if (data[selectedSi.dataset.code] !== undefined) {
-	      console.log(data[selectedSi.dataset.code]);
-	      for (let i = 0; i < data[selectedSi.dataset.code].length; i++) {
-	        console.log(data[selectedSi.dataset.code][i]);
-	        locs.push(data[selectedSi.dataset.code][i]["location"]);
-	        item.push(data[selectedSi.dataset.code][i]);
-	      }
-	    }
-	    console.log(item);
-	    document.querySelector(".map-info-list").innerHTML = "";
-	    for (let k = 0; k < item.length; k++) {
-	      const div = document.createElement("li");
-	      div.innerHTML = `
-	          <div>${item[k]["name"]}</div>
-	          <div>${item[k]["price"]}</div>
-	      `;
-	      document.querySelector(".map-info-list").appendChild(div);
-	    }
-
-	    for (let i = 0; i < locs.length; i++) {
-	      const response = api.fetchGetLoc(locs[i]);
-	      response.then((res) => {
-	        const loc = res["results"][0]["geometry"]["location"];
-	      });
-	    }
-	  });
+	  selectedSi.setAttribute("name", "code");
+	  const dongcode = selectedSi.dataset.code;
+	  location.href="${root}/main?act=search&dongcode="+dongcode;
 	});
 	
 	function login(){
